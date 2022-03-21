@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel = "stylesheet" href = "../css/public.css">
+<script src="../js/jquery-3.6.0.min.js"></script>
+<style>
+img{
+ margin : 5px;
+}
+
+</style>
+<script>
+$(function(){
+  $('#btn1').on('click',function(){
+	ptag = $('<p class = "pp" onclick = aa(this) >별빛 같은 나의 사랑아</p>');
+	ptag.appendTo($('#result1'));
+	
+	//vp = document.createElement('p');
+	//vp.class = "pp";
+	//vp.onclick(){}
+	//
+	//text = document.createTextNode('별빛 같은 나의 사랑아');
+	//vp.appendChild(text)
+  })
+    
+  $('#btn2').on('click',function(){
+	  
+	  //$(this)-btn2
+	  $('<p></p>',{
+	 'class' : 'pp',
+	 'click' :function(){
+		    $(this).css('color','green');//-p태그
+	 },
+	 'text' : '별빛 같은 나의 사랑아'
+		  
+	  }).appendTo($('#result2'))
+	  
+  })
+  
+  $('#btn3').on('click',function(){
+	$('<img>',{
+	     "src" : '../images/cloud03.jpg',
+	     "alt" :  'cloud03.jpg',
+	     
+	     'click' : function(){
+	    	 $(this).css('border','1px solid red');
+	     }
+	     
+	}).appendTo($('#result3')) 
+  })
+})
+
+  function aa(ptag){
+	  $(ptag).css('color','red');
+  }
+</script>
+</head>
+<body>
+
+<div class="box">
+		<pre> 	
+		확인 버튼 클릭하면 result1에 ptag 새로 만들기
+		$('&lt;p class = "pp" onclick = aa(this) >별빛 같은 나의 사랑아&lt;/p>');
+       </pre>
+		<input id = "btn1" type="button" value="확인" > 
+		<div id="result1"></div>
+	</div>
+	
+	
+	<div class="box">
+		<pre> 	
+		확인 버튼 클릭하면 result1에 ptag 새로 만들기
+		$('&lt;p>&lt;/p>',{속성 과 이벤트를 설정})
+       </pre>
+		<input id = "btn2" type="button" value="확인" > 
+		<div id="result2"></div>
+	</div>
+	
+	<div class="box">
+		<pre> 	
+		확인 버튼 클릭하면 result1에 ptag 새로 만들기
+		확인 클릭시 이미지 태그를 생성해서 추가
+		이미지 생성 시 properties방식을 이용한다.
+		생성된 이미지를 클릭시 이미지의 테두리를 설정한다.
+       </pre>
+		<input id = "btn3" type="button" value="확인" > 
+		<div id="result3"></div>
+	</div>
+	
+	
+</body>
+</html>
