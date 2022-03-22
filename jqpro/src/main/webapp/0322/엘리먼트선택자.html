@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script>
+	$(function() {
+		$('#btn1').on('click', function() {
+			//h2자식 a 태그의 스타일에 테두리 설정  - solid
+			//h2후손 a태그의 스타일 배경색을 노락색으로 변경
+			$('h2>a').css('border', '3px solid red');
+			$('h2 a').css('background', 'yellow');
+
+		})
+
+		$('#btn2').on('click', function() {
+			//span태그의 배경색 변경-pink
+			$('.box2 span').css('background', 'pink');
+			//div의 모든 후손중  span 태그의 테두리  - red
+			$('.box2 div span').css('border', '2px solid red');
+			//div의 바로 다음 자식 span태그의 테두리  - blue
+			$('.box2 div > span').css('border','2px solid blue');
+		})
+
+		$('#btn3').on('click',function(){
+		    
+			/* $('.box3 h3~p').css('background','yellow').css('text-align','center')
+		                   .css('width','40%'); */
+		   
+		     $('.box3 h3~p').css({
+		        'background' : 'yellow',
+		        'text-align' : 'center',
+		         'width'     : '40%'
+		                   })              
+			$('.box3 h3+p').css('font-weight','bold');
+		})
+		
+		
+		
+	})
+</script>
+</head>
+<body>
+
+	<div class="box">
+		<pre> 	
+       </pre>
+		<input id="btn1" type="button" value="확인">
+		<div id="result1">
+			<h2>
+				문단 안에 <a>링크</a>태그가 있다 두번째 <span><a>링크</a></span>은 자손이다
+			</h2>
+
+		</div>
+	</div>
+
+
+	<div class="box box2">
+		<pre> 	
+       </pre>
+
+		<input id="btn2" type="button" value="확인">
+		<p>
+			이 문단에는 <span>스팬</span> 엘리먼트가 있다
+		</p>
+
+		<div>
+			이 디비젼에도 <span>스팬</span> 엘리먼트가 있다
+			<p>
+				디비젼의 내부 문단의 <span>스팬</span> 엘리먼트이다
+			</p>
+
+			<div>
+				<p>
+					내부 디비젼의 다시 문단 속 아주 <strong>깊은곳에 </strong> <em> 숨어있는 </em> <span>스팬</span>
+					엘리먼트도 있다
+				</p>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div class="box box3">
+		<pre> 
+		
+       </pre>
+		<input id="btn3" type="button" value="html">
+		<div id="result3">
+			<p>형제 선택자 에 대하여</p>
+			<h3>꼬마버스 타요 가족을 소개 합니다</h3>
+			<p>타요</p>
+			<p>로기</p>
+			<p>라니</p>
+			<p>가니</p>
+
+
+		</div>
+
+	</div>
+	
+	
+	
+	
+	
+</body>
+</html>

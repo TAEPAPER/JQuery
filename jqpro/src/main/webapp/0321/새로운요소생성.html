@@ -12,11 +12,13 @@ img{
 
 </style>
 <script>
-$(function(){
+$(function(){ //==$(document).ready(function(){ 랑 같아
+	
   $('#btn1').on('click',function(){
-	ptag = $('<p class = "pp" onclick = aa(this) >별빛 같은 나의 사랑아</p>');
+	ptag = $('<p class = "pp" onclick = aa(this) >별빛 같은 나의 사랑아 </p>');
 	ptag.appendTo($('#result1'));
 	
+	//[script로 했을 경우]
 	//vp = document.createElement('p');
 	//vp.class = "pp";
 	//vp.onclick(){}
@@ -48,8 +50,10 @@ $(function(){
 	    	 $(this).css('border','1px solid red');
 	     }
 	     
-	}).appendTo($('#result3')) 
+	} ).appendTo($('#result3')) 
+  
   })
+  
 })
 
   function aa(ptag){

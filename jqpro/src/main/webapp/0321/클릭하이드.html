@@ -10,8 +10,9 @@
 $(document).ready(function(){
 	hlist = document.getElementsByTagName('h1');
 	for(i =0; i<hlist.length; i++){
-		hlist[i].addEventListner('click',fhide)
+		hlist[i].addEventListener('click',fhide)
 	}
+	
 	function fhide(){
 	//this를 자동으로 사용가능
 	    $(this).hide();

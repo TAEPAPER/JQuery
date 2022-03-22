@@ -13,12 +13,8 @@ function proc2(h1tag){
 //h1tag.style.display = "none";
      
      //h1tag는 jquery메소드 hide()을 사용할 수 없다
- 	//h1tag를 jquery 객체 변수로 변환한다	
+ 	//***h1tag를 jquery 객체 변수로 변환한다***	
 		$(h1tag).hide(); //변수는 따옴표 안해
-	
-		
-
-	
 }
 $(document).ready(function(){ //==> window.onload
 	
@@ -31,12 +27,12 @@ $(document).ready(function(){ //==> window.onload
 		}
 		vh1[4].style.color = 'green';
 		
-		/* 
+		/* jquery로 했을 경우
+		
 		vjh1 = $('h1');
 		vjh1.css('color','red');
 		vjh1.eq(2).css('color','green');*/
-	})
-	
+	})	
 })
 </script>
 </head>
