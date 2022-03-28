@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel = "stylesheet" href = "../css/public.css">
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script>
+$(function(){
+	$('#btn1').on('click',function(){
+		cr = parseInt(Math.random()*256);
+		cg =  parseInt(Math.random()*256); 
+		cv =   parseInt(Math.random()*256);
+		$('#result1').css('background','rgb('+cr+','+cg+','+cv+')');
+		
+	})	
+	
+	$('#btn2').on('click',function(){
+		$('#btn1').off('click'); //클릭이벤트를 취소하라
+	})
+})
+</script>
+</head>
+<body>
+<div class="box">
+		<pre> 	
+		확인 클릭하면 result1의 배경색을 랜덤으로 변경한다.
+		취소 클릭 - 이벤트를 제거한다(더이상 배경색이 바뀌지 않는다)
+       </pre>
+		<input type="button" value="확인" id="btn1"> 
+		<input type="button" value="취소" id="btn2">
+		<div id="result1"></div>
+	</div>
+</body>
+</html>
