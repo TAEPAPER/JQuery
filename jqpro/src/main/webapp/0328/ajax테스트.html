@@ -26,9 +26,10 @@
 				'click',
 				function() {
 					//입력한 값 가져오기
+					//요청
 					idvalue = $('#id').val();
 					namevalue = $('#name').val();
-
+					
 					var xhr = new XMLHttpRequest();
 					xhr.open('get', 'first.jsp?id=' + idvalue + '&name='
 							+ namevalue, true);
@@ -64,9 +65,6 @@
 			 
 		})
 		
-		
-		
-			
 	})
 </script>
 </head>

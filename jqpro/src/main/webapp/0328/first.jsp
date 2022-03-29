@@ -31,7 +31,6 @@ p{
 //crud처리
 %>
 
-
 <p><%=userId %>님 환영합니다</p>
 <p><%=userName %>님좋은 하루 되세요</p>
 </body>
