@@ -5,7 +5,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-    
    <%
    SqlMapClient client = SqlMapClientFactory.getSqlMapClient();
    List<LprodVO> list = client.queryForList("lprod.selectAll");
@@ -21,7 +20,7 @@
 		{
 		  "id" : "<%= vo.getLprod_id() %>",
 		  "gu" : "<%= vo.getLprod_gu() %>",
-		  "nm"  : "<%= vo.getLprod_nm() %>"
+		  "nm" : "<%= vo.getLprod_nm() %>"
 		}
 	
 	<% 

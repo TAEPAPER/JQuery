@@ -27,6 +27,7 @@ $(function(){
 			   str += "<tr><td>아이디</td>";
 			   str += "<td>분류</td>";
 			   str += "<td>이름</td><tr>";
+			  
 			   $.each(res,function(i,v){
 				   
 				str += "<tr><td>"+v.id+"</td>";
@@ -44,10 +45,13 @@ $(function(){
 	
 	
 	})
+	
 	$('#btn2').on('click',function(){
 	$.ajax({
+		//요청
 			url : '/jqpro/LprodServlet.do',
 			type : 'get',
+		//응답	
 			success : function(res){
 				str = "<table class='table table-striped' border = '1'>";
 				str += "<tr><td>LPROD_ID</td>";
@@ -69,14 +73,7 @@ $(function(){
 		})
 
 	})
-	
-	
-	
-	
-	
-	
-	
-	
+
 })
 </script>
 </head>

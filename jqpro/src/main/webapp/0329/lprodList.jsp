@@ -9,7 +9,6 @@
      
     %>
     
-   
     [
     <%
       for(int i=0; i<list.size(); i++){
@@ -18,9 +17,9 @@
     %>  
     
              {
-        "id" : "<%= vo.getLprod_id() %> ",
-        "gu" : "<%= vo.getLprod_gu() %> ",
-        "nm" : "<%= vo.getLprod_nm() %> "
+        "id" : "<%= vo.getLprod_id() %>",
+        "gu" : "<%= vo.getLprod_gu() %>",
+        "nm" : "<%= vo.getLprod_nm() %>"
              }
      
     <%   
