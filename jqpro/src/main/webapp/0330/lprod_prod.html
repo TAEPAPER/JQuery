@@ -8,14 +8,16 @@
 <script>
 $(function(){
 	$('#btn1').on('click',function(){
+		
 		$.ajax({
+			//요청
 			url : "/jqpro/LprodServlet.do",
 			type : "get",
-			
+			//응답
 			success : function(res){
 				
 				str = "";
-				$.each(res,function(i,v){
+				$.each(res,function(i,v){   //res는 select * from lprod의 결과물 List<LprodVO>
 				str += "<option value ='" + v.gu + "'>"+ v.nm +"</option>"	 
 				})
 				$('#lprod').html(str);
@@ -33,14 +35,16 @@ $(function(){
 	//출력
 	//장난감 신발선택시 prod데이터가 없다 
 	$('#lprod').on('click',function(){
-		 lgu = $('option:selected',this).val();
+		 lgu = $('option:selected',this).val(); //value값은 gu이다(분류번호)-위에서 구함~!
+		
 		 $.ajax({
+			 //요청
 		    url : '/jqpro/ProdServlet.do',
 		    type : 'get',
 		    data : {"lgu" : lgu},
-		    
+		    //응답      
 		    success :  function(res){
-		        str = "";
+		        str = ""; 
 		    	if(res.length>0){
 		        $.each(res,function(i,v){
 		        str +="<option value ='"+v.prod_id+"'>"+v.prod_name+"</option>"; 
@@ -66,8 +70,8 @@ $(function(){
 	//prod_id를 조건으로 해서 prod의 제품 상세보기
 	$('#prod').on('change',function(){
 		//prod의 선택한 항목의 option value값 - prod_id
-		id = $('option:selected',this).val();
-		//값을 가져온다
+		id = $('option:selected',this).val();  //**value값을 가져오는 것!!!**
+		//값을 가져온다                            //여기서 value값은 prod_id이다!!!
 		//option value값 - prod_id 0인지 아닌지 판단
 		//0이 아니면 서버로 보낸다.
 		
@@ -77,7 +81,7 @@ $(function(){
 			url : '/jqpro/ProdServlet.do',
 			type : 'post',
 			data : {"id" : id},
-			//응답
+			//응답   //prod_id가 ~~인것의 결과물
 			success : function(res){
 			  str = "<table border ='1'>";
 			  str += "<tr><td>항목</td>";
