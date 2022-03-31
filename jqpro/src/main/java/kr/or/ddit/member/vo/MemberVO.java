@@ -5,8 +5,13 @@ public class MemberVO {
 	private String mem_id;
 	private String mem_name;
 	private String mem_add1;
+	private String mem_add2;
 	private String mem_hp;
 	private String mem_mail;
+	
+	private String mem_zip;
+	private String mem_pass;
+	private String mem_bir;
 	
 	
 	
@@ -41,11 +46,31 @@ public class MemberVO {
 	public void setMem_mail(String mem_mail) {
 		this.mem_mail = mem_mail;
 	}
-	@Override
-	public String toString() {
-		return "MemberVO [mem_id=" + mem_id + ", mem_name=" + mem_name + ", mem_add1=" + mem_add1 + ", mem_hp=" + mem_hp
-				+ ", mem_mail=" + mem_mail + "]";
+	public String getMem_add2() {
+		return mem_add2;
 	}
+	public void setMem_add2(String mem_add2) {
+		this.mem_add2 = mem_add2;
+	}
+	public String getMem_zip() {
+		return mem_zip;
+	}
+	public void setMem_zip(String mem_zip) {
+		this.mem_zip = mem_zip;
+	}
+	public String getMem_pass() {
+		return mem_pass;
+	}
+	public void setMem_pass(String mem_pass) {
+		this.mem_pass = mem_pass;
+	}
+	public String getMem_bir() {
+		return mem_bir;
+	}
+	public void setMem_bir(String mem_bir) {
+		this.mem_bir = mem_bir;
+	}
+	
 	
 	
 	

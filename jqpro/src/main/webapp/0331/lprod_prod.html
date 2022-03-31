@@ -28,8 +28,6 @@ $(function(){
 			},
 			dataType : 'json'
 		})
-		
-	
 	})
 	
 	//lprod를 선택하면 - lprod_gu 값을 얻어서 서버로 전송해서 prod_id와 prod_name을 가져와서 
@@ -40,21 +38,21 @@ $(function(){
 		
 		 $.ajax({
 			 //요청
-		    url : '/jqpro/ProdServlet.do',
+		    url : '/jqpro/ProdServletSW.do',
 		    type : 'get',
 		    data : {"lgu" : lgu},
 		    //응답      
 		    success :  function(res){
 		        str = ""; 
-		    	if(res.length>0){
-		        $.each(res,function(i,v){
+		    	if(res.sw == "ok"){
+		        $.each(res.datas,function(i,v){   //res.datas[i].prod_id
 		        str +="<option value ='"+v.prod_id+"'>"+v.prod_name+"</option>"; 
 		       		 })
+		       		 
 		    	}else{
 		    		str+= "<option>데이터 없음</option>";
 		    		 $('#result1').empty();
 		    	}
-		        
 		    	$('#prod').html(str);
 		    	$('#prod').trigger('change');
 		    },
@@ -77,7 +75,7 @@ $(function(){
 		
 			//요청
 			$.ajax({
-			url : '/jqpro/ProdServlet.do',
+			url : '/jqpro/ProdServletSW.do',
 			type : 'post',
 			data : {"id" : id},
 			//응답   //prod_id가 ~~인것의 결과물
@@ -125,8 +123,6 @@ $(function(){
 		
 	
 	})
-	
-	
 	
 })
 </script>

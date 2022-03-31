@@ -7,6 +7,7 @@ import com.ibatis.sqlmap.client.SqlMapClient;
 
 import kr.or.ddit.ibatis.config.SqlMapClientFactory;
 import kr.or.ddit.member.vo.MemberVO;
+import kr.or.ddit.member.vo.ZipVO;
 
 // mapper접근 - SqlMapClient객체가 필요
 // dao클래스 객체 생성해서 return (service에서 사용할~)
@@ -35,6 +36,40 @@ public class MemberDaoImpl implements IMemberDao {
 		e.printStackTrace();
 	}   
 	    return list;	
+	}
+	@Override
+	public String idCheck(String memId) {
+		String idCheck = null;
+		     try {
+   idCheck=	(String) client.queryForObject("member.idCheck",memId);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		return idCheck;
+	}
+	@Override
+	public List<ZipVO> zipList(String dong) {
+		List<ZipVO> list = null;
+		    try {
+			list=	client.queryForList("zip.zipList",dong);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+		return list;
+	}
+	@Override
+	public String insertMember(MemberVO memberVO) {
+		String id = null;
+		           try {
+	   id= (String) client.insert("member.inserMember",memberVO);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		return id;
 	}    
 
 
