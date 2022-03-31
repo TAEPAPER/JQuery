@@ -18,15 +18,16 @@
 $(function(){
 	//아이디 중복체크
  $('#idchk').on('click',function(){
-	event.preventDefault();
+	event.preventDefault(); //원래하던 기능인 전송 기능을 없앤다!
      //입력한 값을 가져온다
      //서버로 전송한다
      idvalue = $('#uid').val().trim();
      $.ajax({
-    	url : '<%=request.getContextPath()%>/IdCheck.do',
+    	 //요청
+    	url : '<%=request.getContextPath()%>/IdCheck.do',  
     	type : 'get',
     	data : {"id" : idvalue},
-    	
+    	//응답
     	success : function(res){
     	//	alert(res.flag);
     		$('#idspan').html(res.flag)
@@ -42,10 +43,13 @@ $(function(){
     	 })
      
 	})
-
+	
         $('#zipsearch').on('click',function(){
-		    event.preventDefault();  	 //화면에 나타나지 않는 논리적인 이름
+        	//window.open(url, name, specs, replace);
+		    event.preventDefault();  //현재 기능을 없앰! 	
 			window.open("zipsearch.html","우편번호","width=500 height =400");    
+			 //"우편번호"  : 화면에 나타나지 않는 논리적인 이름
+			 
         })
 	
 	//우편번호 찾기 --modal로 수행
@@ -93,14 +97,14 @@ $(function(){
 	})
 	
 	//$('.ziptr').on('click',function(){})--***이거 안돼!!!!!*****나중에 만들어진거니까
-	//검색결과에서 선택하여 값을 넘기기
-	$('#result1').on('click','.ziptr',function(){
+	//검색결과에서 선택하여 값을 넘기기--modal
+	$('#result1').on('click','.ziptr',function(){ //#result1은 modalbody에 있는 div이다!! 
 	  zipcode = $("td:eq(0)",this).text();
 	  addr = $("td:eq(1)",this).text();
-	  $('#upost').val(zipcode);
-	  $('#uaddr1').val(addr); 
+	  $('#upost').val(zipcode); //세터
+	  $('#uaddr1').val(addr);  //세터
 	  
-	  $('#dong').val("");
+	  $('#dong').val("");  //세터
 	  $('#result1').empty();
 	  $('#myModal').modal('hide');
 	  
@@ -267,7 +271,7 @@ $(function(){
       }, false);
     });
   }, false);
-})();
+})();           /*     (function(){})(); : 한번실행되고 끝난다!! */
 </script>
 
 </body>

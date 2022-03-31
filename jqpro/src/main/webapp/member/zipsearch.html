@@ -53,12 +53,13 @@ $(function(){
 	
 	//$('.ziptr').on('click',function(){})--***이거 안돼!!!!!*****나중에 만들어진거니까
 	//검색결과에서 선택하여 부모창으로 넘겨주는 것!~!
+	//$(document).on('click','ziptr',function(){})
 	$('#result1').on('click','.ziptr',function(){
 	  zipcode = $("td:eq(0)",this).text();
 	  addr = $("td:eq(1)",this).text();
-	  $('#upost',opener.document).val(zipcode);
-	  $('#uaddr1',opener.document).val(addr);
-	  window.close();
+	  $('#upost',opener.document).val(zipcode); //setter
+	  $('#uaddr1',opener.document).val(addr);   //setter
+	  window.close();   //윈도우 닫아주기
 	
 	})
 

@@ -9,7 +9,7 @@
 $(function(){
 	$('#btn1').on('click',function(){
 		$(this).css('border','5px solid red');
-	      event.stopPropagation();
+	    //  event.stopPropagation();
 	})
 	
 	$('#sp').on('click',function(){
@@ -40,6 +40,14 @@ $(function(){
 
 <div class="box">
 		<pre> 	
+	&lt;div id="result1">
+		    &lt;span id = "sp">
+		       &lt;input type="button" value="확인" id ="btn1"> 
+			&lt;/span>
+	&lt;/div>
+		
+		
+		
        </pre>
 		<div id="result1">
 		    <span id = "sp">
