@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<link rel = "stylesheet" href = "../css/public.css">
+<script>
+$(function(){
+	
+	$('#btn1').on('click',function(){
+	      dong = $('#search').val().trim();        
+	      $.ajax({
+	    	  url : '/join-bootstrapMe/zipServlet.do',
+	    	  type : 'get',
+	    	  data : {"dong" : dong},
+	    	  
+	    	  success : function(res){
+	    		 str= "<table border ='1'>";
+	    		 str+="<tr><td>우편번호</td>";
+	    		 str +="<td>주소</td>";
+	    		 str+="<td>번지</td></tr>";
+	    		 
+	    	$.each(res,function(i,v){
+	          str+="<tr class = 'ziptr' ><td>"+v.zipcode+"</td>";
+	          str+="<td>"+v.sido+" "+v.gugun+" "+v.dong+"</td>";
+	          
+	          if(v.bunji == null){ //번지가 없는 경우
+	        	  str += "<td></td></tr>";
+	          }else{
+	        	  str += "<td>"+v.bunji+"</td></tr>";
+	          } 
+	    	})	 
+	    	str+="</table>";
+	    		$('#result1').html(str); 
+	     
+	    	  },
+	    	  error : function(xhr){
+	    		  alert("상태 : "+xhr.status);
+	    		  
+	    	  },
+	    	  dataType : 'json'
+    	  
+	      })
+	})
+
+	$('#result1').on('click','.ziptr',function(){
+	 	
+		zipcode= $("td:eq(0)",this).text(); //게터
+		addr =   $("td:eq(1)" ,this).text(); //게터
+	 		
+		$('#upost',opener.document).val(zipcode);
+		$('#uaddr1',opener.document).val(addr);
+		
+		window.close();
+	 	
+	})
+	
+
+})
+</script>
+<style>
+#search{
+margin-left: 30px;
+}
+
+.ziptr:hover{
+ background : lime;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="box">
+		<input type = "text" id = "search">
+		<input type="button" value="확인" id="btn1"> 
+		<div id="result1"></div>
+	</div>
+</body>
+</html>

@@ -64,7 +64,7 @@ public class MemberDaoImpl implements IMemberDao {
 	public String insertMember(MemberVO memberVO) {
 		String id = null;
 		           try {
-	   id= (String) client.insert("member.inserMember",memberVO);
+	   id= (String) client.insert("member.insertMember",memberVO);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

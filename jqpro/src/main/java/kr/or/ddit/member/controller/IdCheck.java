@@ -40,10 +40,7 @@ public class IdCheck extends HttpServlet {
 		   request.setAttribute("id", memId);		   
 		    //5.jsp로 forward한다
 		request.getRequestDispatcher("member/idcheck.jsp").forward(request, response);
-		   
-        		
-		
-		
+
 	}
 
 }

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 이 문서는 iBatis에서 처리할 SQL문을 작성하는 문서입니다. -->
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+  
+  <sqlMap namespace = "zipboard">
+  
+  <!-- 시 가져오는  -->
+  <select id = "selectSido" resultClass = "string">
+  
+  select distinct sido from ziptb
+  
+  </select>
+  
+  <!-- 구 가져오는 -->
+  <select id = "selectGugun" resultClass = "string" parameterClass = "string">
+    select distinct gugun
+    from ziptb
+    where sido = #sido#
+  
+  </select>
+  
+  <!-- 동가져오는  -->
+  
+  <select id = "selectDong" resultClass = "string" parameterClass = "zipboardVO">
+  
+  select distinct dong
+  from ziptb
+  where sido = #sido# and gugun = #gugun#
+  
+  </select>
+  
+  <!-- 디테일  가져오기 -->
+  
+  <select id = "selectDetail" resultClass = "zipboardVO" parameterClass ="zipboardVO">
+  select *
+  from ziptb
+  where sido = #sido# and gugun=#gugun# and dong like #dong#||'%' 
+  
+  </select>
+  
+  
+  </sqlMap>
