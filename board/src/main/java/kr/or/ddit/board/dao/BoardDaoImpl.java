@@ -28,16 +28,16 @@ public class BoardDaoImpl implements IBoardDao {
 	
 	
 	@Override
-	public List<BoardVO> selectList(Map<String, Integer> map) throws SQLException {
+	public List<BoardVO> selectList(Map<String, Object> map) throws SQLException {
 		/*List<BoardVO> list = null;
 		list = client.queryForList("board.selectList",map);*/
 		
 		return client.queryForList("board.selectList",map);
 	}
 	@Override
-	public int totalCount() throws SQLException {
+	public int totalCount(Map<String,String> map) throws SQLException {
 		// TODO Auto-generated method stub
-		return (int) client.queryForObject("board.totalCount");
+		return (int) client.queryForObject("board.totalCount", map);
 	}
 	
 	

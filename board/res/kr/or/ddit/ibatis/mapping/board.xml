@@ -13,17 +13,12 @@
  	    <dynamic prepend = " where">
  	       <isNotEmpty property= "stype" prepend=" and ">
  	           <isNotEmpty property = "sword">
- 	               $stype$ like #sword#||'%'
+ 	               $stype$ like '%'||#sword#||'%'
  	           </isNotEmpty>                        <!-- 이 속성이 비어있지 않으면~ -->
  	       </isNotEmpty>
  	    </dynamic>
- 	
  	</sql>
-
-
-
-
-
+ 	
 	<select id="selectList" parameterClass="map" resultClass="boardVO">
 		select A.* 
 		from (
@@ -36,7 +31,6 @@
 		where A.rnum >= #start# 
 		]]>
 
-
 	</select>
 
 
@@ -44,7 +38,6 @@
    		select count(*) from board1  
    		<include refid= "dynamicCondition"/>
    </select>
-
 
 
 

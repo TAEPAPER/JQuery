@@ -21,12 +21,9 @@ public class BoardServiceImpl implements IBoardService {
     	}
     	return service;
     }
-	
-	
-	
-	
+
 	@Override
-	public List<BoardVO> selectList(Map<String, Integer> map) {
+	public List<BoardVO> selectList(Map<String,Object> map) {
 		List<BoardVO> list = null;
 		//묶음처리에서는 service에서 trycatch합니다
 		try {
@@ -37,10 +34,10 @@ public class BoardServiceImpl implements IBoardService {
 		return list;
 	}
 	@Override
-	public int totalCount() {
+	public int totalCount(Map<String,String> map) {
 		 int count = 0;
 		 try {
-			count = dao.totalCount();
+			count = dao.totalCount(map);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -48,14 +45,22 @@ public class BoardServiceImpl implements IBoardService {
 		 
 		return count;
 	}
+	
 	@Override
-	public Map<String, Object> getPageInfo(int page) {
-		          Map<String,Object> map = new HashMap<String, Object>();
-		//전체 글갯수
-		  int count = this.totalCount();
-		  
+	public Map<String, Object> getPageInfo(int page,String type,String word) {
+		  Map<String,Object> map = new HashMap<String, Object>();
 		  //한페이지당 출력할 글 갯수
 		  int perlist = 3;
+		  
+		  int perpage =2;
+		  
+		  Map<String,String> paramap = new HashMap<String,String>();
+		  paramap.put("stype", type);
+		  paramap.put("sword", word);
+		  
+		  //전체 글갯수
+		  int count = this.totalCount(paramap);
+		 
 		  
 		  //전체 페이지수 
 		  int totalPage =(int)Math.ceil((double)count / perlist); 
@@ -68,9 +73,27 @@ public class BoardServiceImpl implements IBoardService {
 			  end = count;
 		  }
 		 
+		  //startPage,endPage구하기
+		  //page 1 = >1
+		  //page 2 = >1
+		  //page 3 = >3 
+		  //page 4 => 3 4
+		  //page 6 => 5 6
+		  //page 7 => 7 8
+		  int startPage = ((page -1) / perpage * perpage) +1;
+		  int endPage = startPage + perpage -1;
+		  
+		  if(endPage > totalPage) {
+			  endPage = totalPage;
+		  }
+		
 		  map.put("start",start);
 		  map.put("end",end);
-		
+		  map.put("startpage", startPage);
+		  map.put("endpage", endPage);
+		  map.put("totalpage", totalPage);
+		  
+		  
 		  return map;
 	}
 

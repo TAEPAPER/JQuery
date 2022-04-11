@@ -8,15 +8,13 @@ import kr.or.ddit.board.vo.BoardVO;
 public interface IBoardService {
 	
 	//리스트 출력
-	public List<BoardVO> selectList(Map<String,Integer> map);
+	public List<BoardVO> selectList(Map<String,Object> map);
 	
 	//전체 글 갯수 가져오기
-	public int totalCount();
+	public int totalCount(Map<String,String> map);
 	
 	
 	//page정보 구하기 
-	public Map<String,Object> getPageInfo(int page);
-	
-	
+	public Map<String,Object> getPageInfo(int page,String type,String word);
 	
 }

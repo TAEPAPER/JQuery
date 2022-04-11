@@ -11,7 +11,7 @@
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-
+  <script src = "../js/board.js" ></script> <!-- 외부스크립트 -->
 <style type="text/css">
  p{
  
@@ -40,75 +40,59 @@ input[name=reply]{
 h1{
  margin-left : 100px;
 }
+#stype{
+  width : 100px;
+  
+}
+.navbar{
+  margin : 5px 25px;
+}
+#pagelist{
+ margin-left : 20%;
+ height : 50px;
+}
+.pagination{
+   float :left;
+   width : 100px;
+}
 </style>
 <script>
 currentPage = 1; //초기값
 
-
   $(function(){
-	 $.ajax({
-		 url : '<%=request.getContextPath()%>/List.do',
-		 type: 'post',
-		 data : {
-			 'page' : currentPage
-			 
-		 },
-		 
-		 success :function(res){
-			 code = '<div id="accordion">';
-			  
-			 $.each(res,function(i,v){
-			
-			code += '	 <div class="card">';
-		    code += '  <div class="card-header">';
-		    code += '    <a class="card-link" data-toggle="collapse" href="#collapse'+v.num+ '">';
-		    code += v.subject;+'</a>';
-		    code += '  </div>';
-		    code += '  <div id="collapse'+v.num+'" class="collapse" data-parent="#accordion">';
-		    code += '    <div class="card-body">';
-		    code += '     <p class ="p1">';
-		    code += '     작성자 :'+ v.writer+ '&nbsp;&nbsp;&nbsp;';
-		    code += '     이메일 :'+ v.mail + '&nbsp;&nbsp;&nbsp;';
-		    code += '     날짜  : '+v.wdate+'&nbsp;&nbsp;&nbsp;';
-		    code += '     조회수 : '+v.hit+ '&nbsp;&nbsp;&nbsp;';
-		  
-		    code += '     </p>';
-		    code += '     <p class ="p2">';
-		    code += '        <input type ="button" class="action" name= "modify" value = "수정">';
-		    code += '        <input type ="button" class="action" name= "delete"value = "삭제">';
-		   
-		    code += '     </p>';
-		    code += '     <hr>';
-		    code += '     <p class ="p3">';
-		    code +=      v.content;
-	
-	
-		    code += '     </p>';
-		    code += '     <p class ="p4">';
-		    code += '     	<textarea rows="" cols = "80"></textarea>';
-		    code += '     	<input type ="button" class="action" name="reply" value="등록">';
-		    
-		    code += '     </p>';
-		    
-		    code += '    </div>';
-		    code += '  </div>';
-		    code += '</div>';
-		 
-			 }) //반복문 끝나는 곳	 
-		 
-			 code += '</div>';
-		   
-			 $('.container').html(code);
-			 
-		 },
-		 error : function(xhr){
-			 alert("상태 : "+xhr.status)
-		 },
-		 dataType:'json'
-		 
-	 })
-	  
-	  
+	typevalue = "";
+	wordvalue = "";
+    listServer();
+    
+ 	//search검색 이벤트
+ 	$('#search').on('click',function(){
+ 		typevalue = $('#stype option:selected').val().trim();
+ 		wordvalue = $('#sword').val().trim();
+ 		listServer();
+ 	})
+    //page번호 클릭하는 이벤트 //
+    $('#pagelist').on('click','.pnum',function(){
+    	//alert($(this).text());
+    	currentPage = $(this).text();
+    	listServer();
+    	
+    })
+    
+    //이전버튼 클릭하는 이벤트
+     $('#pagelist').on('click','.prev',function(){
+    	 currentPage = parseInt($('.pager a').first().text()) -1;
+    	listServer();
+    	
+    })
+    //다음버튼 클릭하는 이벤트
+    $('#pagelist').on('click','.next',function(){
+    	currentPage = parseInt($('.pager a').last().text()) +1;
+    	listServer();
+    	
+    })
+    
+    
+    
   })
   
   </script>
@@ -118,14 +102,29 @@ currentPage = 1; //초기값
 
 <h1>accordian 게시판</h1>
 <br>
-<div class="container"></div>
+<br>
 
+<nav class="navbar navbar-expand-sm bg-info navbar-info">
+    
+  <select class = "form-control" id = "stype">
+      <option value ="">전체</option>  <!-- stype, sword가 없는것!~! -->
+      <option value ="subject">제목</option>
+      <option value ="writer">작성자</option>
+      <option value ="content">내용</option>
+  </select>
   
+  <form class="form-inline" >
+    <input id = "sword" class="form-control mr-sm-2" type="text" placeholder="Search">
+    <button id = "search" class="btn btn-primary" type="button">Search</button>
+  </form>
+</nav>
+<br><br>
 
-
-
-
-
+<!--list출력 부분 -->
+<div class="container"></div>
+<br><br>
+<div id = "pagelist"></div>
+  
 
 </body>
 </html>

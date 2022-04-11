@@ -9,10 +9,10 @@ import kr.or.ddit.board.vo.BoardVO;
 public interface IBoardDao {
 	
 	//리스트 출력
-	public List<BoardVO> selectList(Map<String,Integer> map) throws SQLException;
+	public List<BoardVO> selectList(Map<String,Object> map) throws SQLException;
 	
 	//전체 글 갯수 가져오기
-	public int totalCount() throws SQLException;
+	public int totalCount(Map<String,String> map) throws SQLException;
 	
 	
 	//page정보 구하기 
